@@ -9,7 +9,24 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+import gdown
 import pipeline
+
+# ─────────────────────────────────────────────
+# AUTO-DOWNLOAD MODEL IF MISSING
+# ─────────────────────────────────────────────
+
+MODEL_PATH = "ID_Project/models/best_resnet50_id.h5"
+
+if not os.path.exists(MODEL_PATH):
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    print("⬇️ Downloading model from Google Drive...")
+    gdown.download(
+        "https://drive.google.com/uc?id=16B8oguO7k7fcwyzk-R1AlZ44e83r76bD",
+        MODEL_PATH,
+        quiet=False
+    )
+    print("✅ Model downloaded!")
 
 # ─────────────────────────────────────────────
 # JSON serializer qui gère numpy
@@ -39,7 +56,11 @@ app = FastAPI(title="Document Authenticity API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:4173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://verify-ai-vers.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -70,8 +91,6 @@ async def analyze(file: UploadFile = File(...)):
         print(f"📁 Analyzing: {original_name} ({len(contents)} bytes)")
 
         result = pipeline.run_pipeline(tmp.name)
-
-        # ← conversion numpy ici
         result = numpy_safe(result)
 
         return JSONResponse(content=result)
