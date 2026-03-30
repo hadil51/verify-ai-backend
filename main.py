@@ -22,9 +22,11 @@ if not os.path.exists(MODEL_PATH):
     os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
     print("⬇️ Downloading model from Google Drive...")
     gdown.download(
-        "https://drive.google.com/uc?id=16B8oguO7k7fcwyzk-R1AlZ44e83r76bD",
-        MODEL_PATH,
-        quiet=False
+       
+        id="1Q2tlsv-EIt_RlunFcoHfh0jdYSqx8AIq",
+        output=MODEL_PATH,
+        quiet=False,
+        fuzzy=True
     )
     print("✅ Model downloaded!")
 
