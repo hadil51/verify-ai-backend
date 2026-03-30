@@ -1,0 +1,6 @@
+{
+  "threshold_used": 0.54,
+  "metric": "f1",
+  "split": "val",
+  "best_f1": 0.9116022099447514
+}

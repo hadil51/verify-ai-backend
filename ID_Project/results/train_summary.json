@@ -1,0 +1,19 @@
+{
+  "best_model_path": "/content/drive/MyDrive/ID_Project/models/best_resnet50_id.keras",
+  "csv_log_path": "/content/drive/MyDrive/ID_Project/logs/train_history.csv",
+  "counts": {
+    "real": 1000,
+    "fake": 1222,
+    "train": 1555,
+    "val": 333,
+    "test": 334
+  },
+  "final_metrics": {
+    "accuracy": 0.9131832718849182,
+    "auc": 0.9769191145896912,
+    "loss": 0.23300480842590332,
+    "val_accuracy": 0.7627627849578857,
+    "val_auc": 0.9424407482147217,
+    "val_loss": 0.7107089161872864
+  }
+}

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+tensorflow
+opencv-python
+numpy
+Pillow
+pillow-heif
+passporteye
+jpegio
